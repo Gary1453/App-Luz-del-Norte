@@ -1,0 +1,109 @@
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+        
+		<meta charset=”utf8”>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">	
+		<meta http-equiv="Content-Security-Policy" content="default-src * data:; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+		<script src="components/loader.js"></script>
+		<script src="lib/onsenui/js/onsenui.min.js"></script>
+
+		<link rel="stylesheet" href="components/loader.css">
+		<link rel="stylesheet" href="lib/onsenui/css/onsenui.css">
+		<link rel="stylesheet" href="lib/onsenui/css/onsen-css-components.css">
+		<link rel="stylesheet" href="css/style.css">
+		<title> Luz del Norte </title>
+
+
+</head>
+
+
+<body>
+
+<ons-page>
+
+	
+  <ons-toolbar>
+    	
+    	<div class="center">Luz del Norte</div>
+
+  </ons-toolbar>
+
+  
+  <h4 style="text-align: center; color: green" > <b> Registro de Consumos de clientes </b> </h4>
+
+
+  <div id="registro" style="text-align: center; margin-top: 100px;">
+
+
+  	<form>
+    
+	    <p>
+	    
+	      <ons-input id="suministroId" modifier="underbar" placeholder="# de Suministro" float></ons-input>
+	    
+	    </p>
+	    
+	    <p>
+	    
+	      <ons-input id="consumoId" modifier="underbar" type="number" placeholder="Cosumo en soles" float></ons-input>
+	    
+	    </p>
+
+	    <p> 
+
+	      Fecha de pago : 	  
+	      <ons-input id="fechaId" modifier="underbar" type="date" float></ons-input>
+	    
+	    </p>	   
+
+	</form>    
+	    
+  </div>
+
+<div style="text-align: center; margin-top: 100px;">
+	
+
+  	    <p style="margin-bottom: 20px;">
+	    
+	      <ons-button id="registrarId" > Registrar </ons-button>
+	      <ons-button id="resetId" > Limpiar </ons-button>
+	    
+	    </p>
+
+</div>
+
+
+</ons-page>
+
+<ons-dialog id="dialog-1">
+
+    <div style="text-align: center; padding: 10px;">
+
+      
+          <p> Registro correcto <p>
+
+
+          <p>
+            
+            <ons-button onclick="hideDialog('dialog-1')">Close</ons-button>
+          
+          </p>
+
+
+    </div>
+
+</ons-dialog>
+
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>   
+		<script type="text/javascript" src="js/logica.js"></script>
+	
+
+</body>
+
+</html>

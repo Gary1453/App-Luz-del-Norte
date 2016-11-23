@@ -1,6 +1,22 @@
 
+//var  url_dominio = "http://192.168.1.7:8080/LuzDelNorteClient";
+var  url = "http://192.168.43.198:8080/LuzDelNorteClient";
+
 
 $(document).on('ready',function(){
+
+
+    if( sessionStorage.getItem("nsuministro") != null )
+    {
+    
+          
+    var  fecha = new Date();  
+    $("#nombreId").text( " Usuario Responsable : " + sessionStorage.getItem("nombre") );    
+    $("#suministroId").val( sessionStorage.getItem("nsuministro") );
+    $("#fechaId").val( fecha.getDate() + "/" + ( fecha.getMonth() + 1 )  + "/" + fecha.getFullYear() );
+
+    }
+
 
 
 		$("#registrarId").on('click',function(){
@@ -16,8 +32,7 @@ $(document).on('ready',function(){
         var mes = fecha.substring( 0 , 4 )  + fecha.substring( 5 , 7 );        
 
 
-        //var  url = "http://192.168.1.7:8080/LuzDelNorteClient/RegistrarConsumoServlet";
-        var  url = "http://192.168.43.198:8080/LuzDelNorteClient/RegistrarConsumoServlet";
+        url = url_dominio + "/RegistrarConsumoServlet";
         url += "?nsuministro=" + nsuministro + "&mes=" + mes + "&fecha=" + fecha + "&consumo=" + consumo + "&callback=?";
 
         
@@ -46,6 +61,43 @@ $(document).on('ready',function(){
         //soap( webServiceUrl , soapMessage );
 
       });
+
+
+    $("#ingresarId").on('click', function(){
+
+      var nsuministro = $("#suministroId").val();
+      //var  url = "http://192.168.43.198:8080/LuzDelNorteClient/RegistrarConsumoServlet";
+      url = url_dominio +  "/ValidarClienteServlet";
+      url += "?nsuministro=" + nsuministro  + "&callback=?";
+
+
+
+      $.getJSON( url , function(data){
+
+        console.log(data);
+
+          if( data.status == "OK")
+          {
+
+             window.location.href = "registro.html";
+             sessionStorage.setItem( "nsuministro" , nsuministro);
+             sessionStorage.setItem( "nombre" , data.mensaje);             
+
+          }else
+          {
+
+              showDialog( 'dialog-1' );
+
+          }
+
+
+
+
+      });
+
+
+    });
+
 
 		$("#resetId").on('click',function(){
 

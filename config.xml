@@ -2,7 +2,7 @@
   <name>App Luz del Norte</name>
   <description/>
   <author/>
-  <content src="registro.html"/>
+  <content src="login.html"/>
   <access origin="*"/>
   <allow-navigation href="*"/>
   <allow-intent href="itms:*"/>

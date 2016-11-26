@@ -1,12 +1,12 @@
 
-//var  url_dominio = "http://192.168.1.7:8080/LuzDelNorteClient";
-var  url = "http://192.168.43.198:8080/LuzDelNorteClient";
-
+var  url_dominio = "http://192.168.1.7:8080/LuzDelNorteClient";
+//var  url_dominio = "http://192.168.43.198:8080/LuzDelNorteClient";
+var pagina = window.location.pathname; 
 
 $(document).on('ready',function(){
 
 
-    if( sessionStorage.getItem("nsuministro") != null )
+    if( ( sessionStorage.getItem("nsuministro") != null ) && pagina !="/login.html" )
     {
     
           
@@ -24,33 +24,48 @@ $(document).on('ready',function(){
 
         // Variables
 
-        // nsuministro = 71000489
-
+  
 				var nsuministro = $("#suministroId").val();				
 				var consumo = $("#consumoId").val();
-				var fecha = $("#fechaId").val();
-        var mes = fecha.substring( 0 , 4 )  + fecha.substring( 5 , 7 );        
+				var fecha = $("#fechaId").val(); 
+        var  fecha1 = new Date();    
 
+        var mes =  fecha1.getFullYear() + "" + ( fecha1.getMonth() + 1 ) ;
 
         url = url_dominio + "/RegistrarConsumoServlet";
         url += "?nsuministro=" + nsuministro + "&mes=" + mes + "&fecha=" + fecha + "&consumo=" + consumo + "&callback=?";
-
         
+
+
         $.getJSON( url , function(data){
-                  
+
+          var mensaje = "";                  
 
           if(data.status == "OK")
           {
 
-              showDialog('dialog-1');
+              mensaje = "registro correcto";
 
           }
+
+          else
+          {
+
+            mensaje = "Hubo un error";
+
+          }
+
+           $("#dialogoId").text( mensaje);
+           showDialog('dialog-1');
+           window.location.href = "login.html";
 
 
         }); 
 
-               
+          
 
+          
+          
 
 
         //Variables del web service
@@ -102,8 +117,6 @@ $(document).on('ready',function(){
 		$("#resetId").on('click',function(){
 
 
-				$("#suministroId").val('');
-				$("#fechaId").val('');
 				$("#consumoId").val('');
 
 
